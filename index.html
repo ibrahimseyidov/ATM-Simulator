@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <title>ATM Simulator</title>
+</head>
+
+<body>
+
+    <!--? Banka Xoş Gəlmisiz Səhifəsi -->
+
+    <section style="display: block;" id="welcomePage">
+        <div class="atm-background d-flex flex-column justify-content-around">
+            <h1 class="display-4 text-center fw-semibold">WebBank Azərbaycana Xoş Gəlmisiz... </h1>
+            <img src="assets/img/debit-card.png" class="debit-card mx-auto" alt="debit-card">
+            <p class="display-5 fw-normal text-center  white-color">Zəhmət olmasa kartınızı bankomata daxil edin...</p>
+            <button class="btn btn-danger mx-auto fs-2" id="enterCardBtn">Kartı Daxil Et</button>
+            <img src="./assets/img/card.jpg" class="card-width mx-auto" alt="card-width">
+        </div>
+    </section>
+
+    <!--? Banka Xoş Gəlmisiz Səhifəsi -->
+
+    <!-- ! PIN Kod Daxil Edilməsi -->
+
+    <section style="display:none" id="pinCode">
+        <div class="atm-background d-flex flex-column justify-content-center" id="pinCodeArea">
+            <img src="./assets/img/pincode.jpg" class="pincode-width mx-auto mb-4 shadow" alt="pincode-width">
+            <p class="display-5 fw-normal white-color text-center mb-5">Zəhmət olmasa PIN kodunuzu daxil edin...</p>
+            <input type="password" minlength="4" maxlength="4" class="form-control w-25 mx-auto" id="pinInput">
+            <button type="submit" class="btn btn-danger mx-auto mt-5 mb-5" id="pinCheckBtn">Davam Et</button>
+            <!-- <div class="alert alert-danger w-50 mx-auto">
+                Girdiyiniz PIN Kod Yanlışdır!!!
+              </div> -->
+        </div>
+
+    </section>
+
+    <!-- !PIN Kod Daxil Edilməsi -->
+
+    <!--* Valyuta Seçimi -->
+
+    <section style="display:none" id="chooseCurrency">
+        <div class="atm-background d-flex flex-row align-items-center justify-content-between">
+            <img src="./assets/img/atm.jpg" class="atm-width" alt="atm">
+            <div class="atm-background d-flex flex-column align-items-end justify-content-center pe-5">
+                <h2>WebBank Azərbaycan</h2>
+                <p class="white-color fs-1 fw-bold">Valyuta Seçin...</p>
+                <div class="mb-4">
+                    <span class="fw-bold display-3">AZN</span>
+                    <button class="btn btn-danger" id="chooseAzn">AZN Seç</button>
+                </div>
+                <div>
+                    <span class="fw-bold display-3">USD</span>
+                    <button class="btn btn-danger" id="chooseUsd">USD Seç</button>
+                </div>
+                <button class="btn btn-success fs-2 mt-5" id="showBalance">Balansı Göstər</button>
+            </div>
+        </div>
+
+    </section>
+
+    <!--* Valyuta Seçimi -->
+
+    <!--? Balans Göstərilməsi -->
+
+    <section style="display:none" id="showBalancePage">
+        <div class="atm-background d-flex flex-column align-items-center justify-content-center pe-5">
+            <h2 class="mb-4">WebBank Azərbaycan</h2>
+            <p class="fs-2 text-dark fw-semibold">Sizin AZN Balansınız: <span class="text-danger fw-bold"
+                    id="myBalance"></span> AZN</p>
+            <p class="fs-2 text-dark fw-semibold">Sizin USD Balansınız: <span class="text-danger fw-bold"
+                    id="myBalanceUsd"></span> USD</p>
+            <button class="btn btn-success fs-2 mt-3" id="backBtn">Geri Qayıt</button>
+        </div>
+    </section>
+
+    <!--? Balans Göstərilməsi -->
+
+    <!-- !Məbləğlər arasında seçim edilməsi -->
+
+    <section style="display:none" id="moneySection">
+        <div class="atm-background d-flex flex-row align-items-start justify-content-between px-5">
+            <div class="d-flex flex-column">
+                <button class="display-4 fw-bold m-5">10 AZN</button>
+                <button class="display-4 fw-bold m-5">50 AZN</button>
+                <button class="display-4 fw-bold m-5">100 AZN</button>
+                <button class="display-4 fw-bold m-5">200 AZN</button>
+            </div>
+
+            <div class="d-flex flex-column">
+                <button class="display-4 fw-bold m-5">500 AZN</button>
+                <button class="display-4 fw-bold m-5">1000 AZN</button>
+                <button class="display-4 fw-bold m-5">5000 AZN</button>
+                <button class="btn btn-danger w-75 ms-5 mt-4 fs-1" id="otherAmount">Digər Məbləğ</button>
+                <button class="btn btn-success w-75 ms-5 mt-4 fs-1" id="goBack">Geriyə Get</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- !Məbləğlər arasında seçim edilməsi -->
+
+
+    <!-- !Məbləğlər arasında seçim edilməsi AZN -->
+
+    <section style="display:none" id="moneySectionAzn">
+        <div class="atm-background d-flex flex-row align-items-start justify-content-between px-5">
+            <div class="d-flex flex-column">
+                <button class="display-4 fw-bold m-5">10 AZN</button>
+                <button class="display-4 fw-bold m-5">50 AZN</button>
+                <button class="display-4 fw-bold m-5">100 AZN</button>
+                <button class="display-4 fw-bold m-5">200 AZN</button>
+            </div>
+
+            <div class="d-flex flex-column">
+                <button class="display-4 fw-bold m-5">500 AZN</button>
+                <button class="display-4 fw-bold m-5">1000 AZN</button>
+                <button class="display-4 fw-bold m-5">5000 AZN</button>
+                <button class="btn btn-danger w-75 ms-5 mt-4 fs-1" id="otherAmount">Digər Məbləğ</button>
+                <button class="btn btn-success w-75 ms-5 mt-4 fs-1" id="goBack">Geriyə Get</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- !Məbləğlər arasında seçim edilməsi AZN -->
+
+    <!-- ?Digər məbləğin seçilməsi -->
+
+    <section style="display:none" id="otherQuantity">
+
+        <div class="atm-background d-flex flex-column justify-content-center">
+            <h1 class="text-center mb-3">WebBank Azərbaycan</h1>
+            <h2 class="white-color text-center mb-4">Çıxarış etmək istədiyiniz məbləği daxil edin...</h2>
+            <input type="text" class="form-control w-25 mx-auto" maxlength="5" id="moneyInputAzn"
+                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+            <button class="btn btn-danger w-25 mx-auto mt-4" id="carryOnBtn">Davam Et</button>
+        </div>
+
+    </section>
+
+    <!-- ?Digər məbləğin seçilməsi -->
+
+
+    <!-- ?Digər məbləğin seçilməsi USD -->
+
+    <section style="display:none" id="otherQuantityUsd">
+
+        <div class="atm-background d-flex flex-column justify-content-center">
+            <h1 class="text-center mb-3">WebBank Azərbaycan</h1>
+            <h2 class="white-color text-center mb-4">Çıxarış etmək istədiyiniz məbləği daxil edin...</h2>
+            <input type="text" class="form-control w-25 mx-auto" maxlength="5" id="moneyInputUsd"
+                aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+            <button class="btn btn-danger w-25 mx-auto mt-4" id="carryOnBtnUsd">Davam Et</button>
+        </div>
+
+    </section>
+
+
+    <!-- ?Digər məbləğin seçilməsi USD -->
+
+    <!--!Balansda Pul Olmadıqda Göstərilən Error Mesajı-->
+
+    <section style="display:none" id="amountError">
+
+        <div class="atm-background d-flex flex-column justify-content-center">
+            <p class="text-center mb-2 fs-1 text-bg-danger mx-auto"><span id="second">10</span> saniyə sonra əsas
+                səhifəyə yönləndiriləcəksiz...</p>
+            <h2 class="display-2 text-center fw-bold white-color">Balansınızda kifayət qədər məbləğ yoxdur...</h2>
+        </div>
+    </section>
+
+    <!--!Balansda Pul Olmadıqda Göstərilən Error Mesajı-->
+
+    <!-- *Pulun Çəkilməsi Ekranı -->
+
+    <section style="display: none;" id="withdrawPage">
+
+        <div class="atm-background d-flex flex-column justify-content-center">
+            <h1 class="text-center mb-5">WebBank Azərbaycan</h1>
+            <h2 class="white-color text-center mb-5">Zəhmət olmasa pulunuzu götürün...</h2>
+            <img src="assets/img/money.jpg" class="w-25 mx-auto shadow" alt="withdraw-money">
+            <p class="fs-4 text-center mt-5 text-bg-danger">10 saniyə sonra əsas səhifəyə yönləndiriləcəksiz...</p>
+        </div>
+
+    </section>
+
+    <!-- *Pulun Çəkilməsi Ekranı -->
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+    <script src="/assets/js/script.js"></script>
+</body>
+
+</html>

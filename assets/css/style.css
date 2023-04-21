@@ -1,0 +1,30 @@
+.body-background {
+    background-image: url(../img/money.jpg);
+    background-size: cover;
+}
+
+.atm-background {
+    background-color: #19A7CE;
+    height: 100vh;
+}
+
+.debit-card{
+    width: 350px;
+}
+
+.white-color {
+    color: #F6F1F1;
+}
+
+.card-width {
+    width: 100px;
+}
+
+.pincode-width {
+    width: 250px;
+}
+
+.atm-width {
+    width: 600px;
+    margin-left: 80px;
+}
